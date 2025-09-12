@@ -65,7 +65,7 @@ const Footer = () => {
       {/* Social Icons - bottom right corner */}
       <div className="absolute bottom-6 right-6 flex gap-5 text-gray-400 z-20">
         <a
-          href="https://twitter.com/"
+          href="https://x.com/GowthamJuttiga"
           target="_blank"
           rel="noopener noreferrer"
           className="hover:text-white transition"
@@ -73,7 +73,7 @@ const Footer = () => {
           <FaTwitter size={22} />
         </a>
         <a
-          href="https://instagram.com/"
+          href="https://www.instagram.com/_mr.nani._/"
           target="_blank"
           rel="noopener noreferrer"
           className="hover:text-white transition"
@@ -81,7 +81,7 @@ const Footer = () => {
           <FaInstagram size={22} />
         </a>
         <a
-          href="https://linkedin.com/"
+          href="https://www.linkedin.com/in/juttiga-gowtham-a5bb4b290/"
           target="_blank"
           rel="noopener noreferrer"
           className="hover:text-white transition"
@@ -89,7 +89,7 @@ const Footer = () => {
           <FaLinkedin size={22} />
         </a>
         <a
-          href="https://github.com/"
+          href="https://github.com/JuttigaGowtham"
           target="_blank"
           rel="noopener noreferrer"
           className="hover:text-white transition"
