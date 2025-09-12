@@ -1,6 +1,6 @@
-
 import React from "react";
 import { FiDownload } from "react-icons/fi";
+import { FaTwitter, FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
 
 export const ScreenFitText = () => {
   const containerRef = React.useRef(null);
@@ -38,26 +38,17 @@ export const ScreenFitText = () => {
       ref={containerRef}
     >
       <div className="w-full h-full flex flex-col items-center justify-center relative">
-       <span
-  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
-             whitespace-nowrap text-center font-bold uppercase 
-             bg-clip-text text-transparent 
-             bg-gradient-to-r from-white/10 to-white/10 drop-shadow-md"
-  ref={textRef}
->
-  Gowtham
-</span>
+        <span
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+              whitespace-nowrap text-center font-bold uppercase
+              bg-clip-text text-transparent
+              bg-gradient-to-r from-white/10 to-white/10 drop-shadow-md"
+          ref={textRef}
+        >
+          Gowtham
+        </span>
 
         <div className="absolute top-[85%] left-1/2 -translate-x-1/2 flex flex-row items-center gap-6">
-          {/* <a
-            href="https://drive.google.com/file/d/1rBlvJQJfvr8uj6RddhUhzKWZugcG-0Vu/view?usp=sharing"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-2.5 border border-purple-600 bg-purple-600 text-white rounded-md backdrop-blur-md hover:bg-purple-700 hover:border-purple-700 transition"
-          >
-            <FiDownload size={16} />
-            Get my Resume
-          </a> */}
           <p className="text-sm text-purple-400">© 2025 All rights reserved.</p>
         </div>
       </div>
@@ -67,11 +58,45 @@ export const ScreenFitText = () => {
 
 const Footer = () => {
   return (
-  <footer className="relative w-full px-4 py-32 text-center text-white overflow-hidden z-10 bg-black min-h-[400px]">
+    <footer className="relative w-full px-4 py-32 text-center text-white overflow-hidden z-10 bg-black min-h-[400px]">
       {/* Animated Background Fit Text */}
       <ScreenFitText />
 
-  {/* Foreground Content intentionally left empty, all content is now in background */}
+      {/* Social Icons - bottom right corner */}
+      <div className="absolute bottom-6 right-6 flex gap-5 text-gray-400 z-20">
+        <a
+          href="https://twitter.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-white transition"
+        >
+          <FaTwitter size={22} />
+        </a>
+        <a
+          href="https://instagram.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-white transition"
+        >
+          <FaInstagram size={22} />
+        </a>
+        <a
+          href="https://linkedin.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-white transition"
+        >
+          <FaLinkedin size={22} />
+        </a>
+        <a
+          href="https://github.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-white transition"
+        >
+          <FaGithub size={22} />
+        </a>
+      </div>
     </footer>
   );
 };
