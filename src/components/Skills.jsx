@@ -55,7 +55,7 @@ const Skills = () => {
   const [selectedSkill, setSelectedSkill] = useState(null);
 
   return (
-    <>
+    <React.Fragment>
       <style>{`
         .tree-skills-bg {
           background-color: #000000;
@@ -81,15 +81,7 @@ const Skills = () => {
           display: flex;
           flex-direction: column;
           align-items: center;
-        }
-        .tree-skills-container {
-          position: relative;
-          width: 100%;
-          max-width: 900px;
-          margin: 0 auto;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
+          padding: 0 1rem;
         }
         .tree-skill {
           position: relative;
@@ -117,11 +109,12 @@ const Skills = () => {
           max-width: 700px;
           justify-content: space-between;
           align-items: center;
+          gap: 1rem;
         }
         .tree-skill-content > .skill-left,
         .tree-skill-content > .skill-right {
           width: 45%;
-          min-width: 200px;
+          min-width: 180px;
           display: flex;
           justify-content: flex-end;
         }
@@ -134,52 +127,46 @@ const Skills = () => {
         @media (max-width: 900px) {
           .tree-skills-container {
             max-width: 100%;
+            padding: 0 0.5rem;
           }
           .tree-skill-content {
-            flex-direction: column;
+            flex-direction: row;
             align-items: center;
+            gap: 1rem;
           }
           .tree-skill-content > .skill-left,
           .tree-skill-content > .skill-right,
           .tree-skill-content > .skill-empty {
-            width: 100%;
-            min-width: 0;
-            justify-content: center;
+            width: 45%;
+            min-width: 120px;
+            justify-content: flex-end;
           }
-        }
-        @media (max-width: 900px) {
-          .tree-skills-container {
-            max-width: 100%;
+          .tree-skill-content > .skill-right {
+            justify-content: flex-start;
           }
-          .tree-skill, .tree-skill.right {
-            width: 100%;
-            min-width: 0;
-            max-width: 100%;
-            justify-content: center;
-            left: 0;
+          .tree-dot {
+            width: 16px;
+            height: 16px;
           }
           .tree-line {
-            left: 10px;
-            width: 2px;
-          }
-          .tree-dot, .tree-skill.right .tree-dot {
-            left: 0;
-            right: auto;
+            left: 50%;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, #a259e6 0%, #fff 100%);
+            z-index: 0;
           }
         }
-        @media (max-width: 900px) {
-          .tree-skill, .tree-skill.right {
-            width: 100%;
-            justify-content: center;
-            left: 0;
+        @media (max-width: 600px) {
+          .tree-skills-bg {
+            padding-left: 0.5rem !important;
+            padding-right: 0.5rem !important;
           }
-          .tree-line {
-            left: 10px;
-            width: 2px;
+          .tree-skill-content {
+            max-width: 98vw;
           }
-          .tree-dot, .tree-skill.right .tree-dot {
-            left: 0;
-            right: auto;
+          .tree-dot {
+            width: 12px;
+            height: 12px;
           }
         }
       `}</style>
@@ -210,7 +197,7 @@ const Skills = () => {
               <div className="tree-dot" />
               <div className="tree-skill-content">
                 {idx % 2 === 0 ? (
-                  <>
+                  <React.Fragment>
                     <div className="skill-left">
                       <SkillCard
                         name={skill.name}
@@ -221,9 +208,9 @@ const Skills = () => {
                       />
                     </div>
                     <div className="skill-empty" />
-                  </>
+                  </React.Fragment>
                 ) : (
-                  <>
+                  <React.Fragment>
                     <div className="skill-empty" />
                     <div className="skill-right">
                       <SkillCard
@@ -234,7 +221,7 @@ const Skills = () => {
                         onClick={() => setSelectedSkill(skill)}
                       />
                     </div>
-                  </>
+                  </React.Fragment>
                 )}
               </div>
             </div>
@@ -280,7 +267,7 @@ const Skills = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </>
+    </React.Fragment>
   );
 };
 

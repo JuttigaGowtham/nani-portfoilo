@@ -49,7 +49,7 @@ export const ScreenFitText = () => {
           Gowtham
         </span>
 
-        <div className="absolute top-[85%] left-1/2 -translate-x-1/2 flex flex-row items-center gap-6">
+        <div className="footer-rights flex flex-row items-center gap-6">
           <p className="text-sm text-purple-400">© 2025 All rights reserved.</p>
         </div>
       </div>
@@ -63,8 +63,8 @@ const Footer = () => {
       {/* Animated Background Fit Text */}
       <ScreenFitText />
 
-      {/* Signature image - bottom left corner */}
-      <div className="absolute bottom-6 left-6 z-20">
+      {/* Signature image - bottom left corner (responsive) */}
+      <div className="footer-signature">
         <img
           src={signature}
           alt="Signature"
@@ -72,8 +72,8 @@ const Footer = () => {
         />
       </div>
 
-      {/* Social Icons - bottom right corner */}
-      <div className="absolute bottom-6 right-6 flex gap-5 text-gray-400 z-20">
+      {/* Social Icons - bottom right corner (responsive) */}
+      <div className="footer-socials flex gap-5 text-gray-400 z-20">
         <a
           href="https://x.com/GowthamJuttiga"
           target="_blank"
@@ -107,6 +107,58 @@ const Footer = () => {
           <FaGithub size={22} />
         </a>
       </div>
+
+      {/* Responsive styles */}
+      <style>{`
+        .footer-signature {
+          position: absolute;
+          bottom: 24px;
+          left: 24px;
+          z-index: 20;
+        }
+        .footer-socials {
+          position: absolute;
+          bottom: 24px;
+          right: 24px;
+          z-index: 20;
+        }
+        .footer-rights {
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          bottom: 40px;
+          z-index: 20;
+        }
+        @media (max-width: 700px) {
+          .footer-signature {
+            position: absolute;
+            bottom: 16px;
+            left: 16px;
+            margin-bottom: 0;
+            display: block;
+            justify-content: flex-start;
+          }
+          .footer-socials {
+            position: absolute;
+            bottom: 16px;
+            right: 16px;
+            margin-bottom: 0;
+            display: flex;
+            justify-content: flex-end;
+          }
+          .footer-rights {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 60px;
+            z-index: 20;
+          }
+          footer {
+            padding-bottom: 48px !important;
+            min-height: 320px !important;
+          }
+        }
+      `}</style>
     </footer>
   );
 };
