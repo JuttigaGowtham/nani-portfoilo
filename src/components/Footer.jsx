@@ -1,6 +1,7 @@
 import React from "react";
 import { FiDownload } from "react-icons/fi";
 import { FaTwitter, FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
+import signature from "../assets/gowtham_signature_inverted.png"; // <-- your signature image
 
 export const ScreenFitText = () => {
   const containerRef = React.useRef(null);
@@ -61,6 +62,15 @@ const Footer = () => {
     <footer className="relative w-full px-4 py-32 text-center text-white overflow-hidden z-10 bg-black min-h-[400px]">
       {/* Animated Background Fit Text */}
       <ScreenFitText />
+
+      {/* Signature image - bottom left corner */}
+      <div className="absolute bottom-6 left-6 z-20">
+        <img
+          src={signature}
+          alt="Signature"
+          className="h-10 w-auto opacity-90"
+        />
+      </div>
 
       {/* Social Icons - bottom right corner */}
       <div className="absolute bottom-6 right-6 flex gap-5 text-gray-400 z-20">

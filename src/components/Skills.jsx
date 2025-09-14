@@ -33,20 +33,21 @@ const skills = [
   { name: "GitHub Actions", icon: SiGithubactions, color: "#2088FF", desc: "Automating CI/CD workflows." },
 ];
 
-const SkillCard = ({ name, Icon, color, onClick }) => (
+const SkillCard = ({ name, Icon, color, desc, onClick }) => (
   <motion.div
-    initial={{ backgroundColor: "rgba(17,17,17,0.6)", opacity: 0, y: 20 }}
+    initial={{ backgroundColor: "rgba(17,17,17,0.6)", opacity: 0, y: 40 }}
     whileInView={{ opacity: 1, y: 0 }}
     whileHover={{ scale: 1.08 }}
-    transition={{ duration: 0.3 }}
-    viewport={{ once: true }}
-    className="relative border border-white/10 backdrop-blur-md text-white 
-               rounded-xl px-4 py-5 flex flex-col items-center shadow-md 
-               min-h-[120px] cursor-pointer group"
+    transition={{ duration: 0.4 }}
+    viewport={{ once: false, amount: 0.5 }}
+    className="relative border border-white/10 backdrop-blur-md text-white rounded-xl px-4 py-5 flex items-center shadow-md min-h-[120px] cursor-pointer group"
     onClick={onClick}
   >
-    {Icon && <Icon size={28} color={color} />}
-    <span className="mt-2 text-sm font-semibold">{name}</span>
+    {Icon && <Icon size={40} color={color} className="flex-shrink-0" />}
+    <div className="ml-4 text-left">
+      <span className="block text-base font-semibold mb-1">{name}</span>
+      <span className="block text-sm text-gray-300">{desc}</span>
+    </div>
   </motion.div>
 );
 
@@ -56,22 +57,139 @@ const Skills = () => {
   return (
     <>
       <style>{`
-        .pattern-bg {
+        .tree-skills-bg {
           background-color: #000000;
-          background-image: 
-            linear-gradient(to right, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+          background-image: linear-gradient(to right, rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.08) 1px, transparent 1px);
           background-size: 40px 40px;
           background-position: center;
         }
+        .tree-line {
+          position: absolute;
+          left: 50%;
+          top: 0;
+          transform: translateX(-50%);
+          width: 4px;
+          height: 100%;
+          background: linear-gradient(to bottom, #a259e6 0%, #fff 100%);
+          z-index: 0;
+        }
+        .tree-skills-container {
+          position: relative;
+          width: 100%;
+          max-width: 900px;
+          margin: 0 auto;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .tree-skills-container {
+          position: relative;
+          width: 100%;
+          max-width: 900px;
+          margin: 0 auto;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .tree-skill {
+          position: relative;
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-bottom: 2.5rem;
+        }
+        .tree-dot {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          width: 20px;
+          height: 20px;
+          background: #a259e6;
+          border-radius: 50%;
+          border: 3px solid #fff;
+          z-index: 2;
+        }
+        .tree-skill-content {
+          display: flex;
+          width: 100%;
+          max-width: 700px;
+          justify-content: space-between;
+          align-items: center;
+        }
+        .tree-skill-content > .skill-left,
+        .tree-skill-content > .skill-right {
+          width: 45%;
+          min-width: 200px;
+          display: flex;
+          justify-content: flex-end;
+        }
+        .tree-skill-content > .skill-right {
+          justify-content: flex-start;
+        }
+        .tree-skill-content > .skill-empty {
+          width: 45%;
+        }
+        @media (max-width: 900px) {
+          .tree-skills-container {
+            max-width: 100%;
+          }
+          .tree-skill-content {
+            flex-direction: column;
+            align-items: center;
+          }
+          .tree-skill-content > .skill-left,
+          .tree-skill-content > .skill-right,
+          .tree-skill-content > .skill-empty {
+            width: 100%;
+            min-width: 0;
+            justify-content: center;
+          }
+        }
+        @media (max-width: 900px) {
+          .tree-skills-container {
+            max-width: 100%;
+          }
+          .tree-skill, .tree-skill.right {
+            width: 100%;
+            min-width: 0;
+            max-width: 100%;
+            justify-content: center;
+            left: 0;
+          }
+          .tree-line {
+            left: 10px;
+            width: 2px;
+          }
+          .tree-dot, .tree-skill.right .tree-dot {
+            left: 0;
+            right: auto;
+          }
+        }
+        @media (max-width: 900px) {
+          .tree-skill, .tree-skill.right {
+            width: 100%;
+            justify-content: center;
+            left: 0;
+          }
+          .tree-line {
+            left: 10px;
+            width: 2px;
+          }
+          .tree-dot, .tree-skill.right .tree-dot {
+            left: 0;
+            right: auto;
+          }
+        }
       `}</style>
 
-      <div className="pattern-bg min-h-screen flex flex-col justify-center items-center text-center px-6 py-20">
+      <div className="tree-skills-bg min-h-screen flex flex-col justify-center items-center text-center px-6 py-20 relative">
         <motion.h1
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-7xl font-extrabold text-purple-500 mb-4"
+          className="text-5xl md:text-7xl font-extrabold text-purple-500 mb-4"
         >
           Skills
         </motion.h1>
@@ -82,30 +200,46 @@ const Skills = () => {
           transition={{ delay: 0.3 }}
           className="text-lg text-gray-300 mb-12 max-w-3xl"
         >
-          A comprehensive overview of my technical toolkit — spanning 
-          <span className="text-purple-400 font-semibold"> frontend</span> frameworks, 
-          <span className="text-purple-400 font-semibold"> backend</span> technologies, 
-          <span className="text-white-400 font-semibold"> databases</span>, and 
-          <span className="text-white-400 font-semibold"> developer tools</span>.  
-          Click on each card to learn more.
+          A tree view of my technical toolkit. Click on each card to learn more.
         </motion.p>
 
-        <motion.div
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 max-w-5xl"
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-        >
-          {skills.map((skill, index) => (
-            <SkillCard
-              key={index}
-              name={skill.name}
-              Icon={skill.icon}
-              color={skill.color}
-              onClick={() => setSelectedSkill(skill)}
-            />
+        <div className="tree-skills-container">
+          <div className="tree-line" />
+          {skills.map((skill, idx) => (
+            <div key={skill.name} className="tree-skill">
+              <div className="tree-dot" />
+              <div className="tree-skill-content">
+                {idx % 2 === 0 ? (
+                  <>
+                    <div className="skill-left">
+                      <SkillCard
+                        name={skill.name}
+                        Icon={skill.icon}
+                        color={skill.color}
+                        desc={skill.desc}
+                        onClick={() => setSelectedSkill(skill)}
+                      />
+                    </div>
+                    <div className="skill-empty" />
+                  </>
+                ) : (
+                  <>
+                    <div className="skill-empty" />
+                    <div className="skill-right">
+                      <SkillCard
+                        name={skill.name}
+                        Icon={skill.icon}
+                        color={skill.color}
+                        desc={skill.desc}
+                        onClick={() => setSelectedSkill(skill)}
+                      />
+                    </div>
+                  </>
+                )}
+              </div>
+            </div>
           ))}
-        </motion.div>
+        </div>
       </div>
 
       {/* Popup Modal */}
