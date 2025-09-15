@@ -22,7 +22,7 @@ const projects = [
     description:
       "A mobile travel application enabling exploration, trip planning, and booking management for thousands of users. Features intuitive navigation, responsive UI, and key travel tools for an enhanced user experience.",
     tech: ["React Native", "JavaScript", "Expo"],
-    link: "hhttps://github.com/JuttigaGowtham/react-native-app-zuii",
+    link: "https://github.com/JuttigaGowtham/react-native-app-zuii",
     image: zuiiImg,
   },
   {
